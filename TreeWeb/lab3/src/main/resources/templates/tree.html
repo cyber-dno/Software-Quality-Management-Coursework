@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <title>Tree</title>
+
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular-1.7.5.min.js"></script>
+        <script src="js/tree.js"></script>
+
+    </head>
+    <body ng-app="tree" ng-controller="TreeRest">
+        
+        <h2>Tree</h2>
+
+        <div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="value_add">Value to add:</label>
+                    <input type="number" onkeyup="check_add();" onchange="check_add();" ng-model="inputValue_ADD" class="form-control" id="value_add" name="value_str_add"/>
+                    <input type="button" value="Add" id="Add_but" ng-click="addValue()" disabled="disabled"/>
+                </div>
+                <div>
+                    <label for="value_del">Value to delete:</label>
+                    <input type="number" onkeyup="check_del();" onchange="check_del();" ng-model="inputValue_DEL" class="form-control" id="value_del" name="value_str_del"/>
+                    <input type="button" value="Del" id="Del_but" ng-click="deleteValue()" disabled="disabled"/>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <label>
+                <textarea id="out" name="out" ng-controller="getTree" cols="80" rows="20">{{str.value}}</textarea>
+            </label>
+        </div>
+    </body>
+</html>
