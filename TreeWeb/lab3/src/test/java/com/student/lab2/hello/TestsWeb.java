@@ -27,12 +27,6 @@ public class TestsWeb {
     public static final String URL = "http://localhost:8080/tree";
 
     @BeforeClass
-    public static void startProcess() {
-        String[] argc = new String[]{""};
-        Application.main(argc);
-    }
-
-    @BeforeClass
     public static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
