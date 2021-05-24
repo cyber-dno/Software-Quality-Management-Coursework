@@ -17,11 +17,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-@WebAppConfiguration
+@SpringBootTest
 public class TestsWeb {
     public static final String URL = "http://localhost:8080/tree";
 
@@ -30,10 +28,10 @@ public class TestsWeb {
         String[] args = new String[]{""};
         Application.main(args);
     }
-    
+
     static {
-		System.setProperty("webdriver.chrome.driver", "C://Windows/System32/chromedriver.exe");
-	}
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver/chromedriver.exe");
+    }
 
     private WebDriver driver;
 
