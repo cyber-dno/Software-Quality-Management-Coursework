@@ -8,10 +8,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,16 +18,24 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
+@WebAppConfiguration
 public class TestsWeb {
     public static final String URL = "http://localhost:8080/tree";
 
-    static {
-        System.setProperty("webdriver.chrome.driver", "C:/Windows/System32/chromedriver.exe");
+    @BeforeClass
+    public static void startProcess() {
+        String[] argc = new String[]{""};
+        Application.main(argc);
     }
 
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
     private WebDriver driver;
 
     @Before
@@ -94,6 +100,7 @@ public class TestsWeb {
     @After
     public void clean() {
         driver.close();
+        driver.quit();
     }
 
     private void waitForLoad(int timeout) {
