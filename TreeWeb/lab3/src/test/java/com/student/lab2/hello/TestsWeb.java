@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
@@ -27,9 +26,15 @@ public class TestsWeb {
     public static final String URL = "http://localhost:8080/tree";
 
     @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    public static void startProcess() {
+        String[] args = new String[]{""};
+        Application.main(args);
     }
+    
+    static {
+		System.setProperty("webdriver.chrome.driver", "C://Windows/System32/chromedriver.exe");
+	}
+
     private WebDriver driver;
 
     @Before
